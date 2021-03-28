@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import MainTable from './components/MainTable/MainTable'
+import User from './components/User/User'
+import { Route, Redirect, Switch, BrowserRouter as Router } from 'react-router-dom'
+import './App.css'
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className="main">
+        <Switch>
+          <Route path="/user/:id">
+            <User/>
+          </Route>
+          <Route path="/main">
+            <MainTable/>
+          </Route>
+          <Route path="*">
+            <Redirect to="/main"></Redirect>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App
